@@ -169,7 +169,7 @@ extension CVCalendarWeekView {
     
     public func didTouchInteractiveView(recognizer: UITapGestureRecognizer) {
         let location = recognizer.locationInView(self.interactiveView)
-        touchController.receiveTouchLocation(location, inWeekView: self, withSelectionType: .Single)
+        touchController.receiveTouchLocation(location, inWeekView: self, withSelectionType: calendarView.selectedStyle)
     }
 }
 

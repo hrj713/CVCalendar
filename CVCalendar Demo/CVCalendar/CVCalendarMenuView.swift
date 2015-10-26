@@ -82,6 +82,8 @@ public final class CVCalendarMenuView: UIView {
             weekdays = dateFormatter.shortWeekdaySymbols as NSArray
         case .VeryShort:
             weekdays = dateFormatter.veryShortWeekdaySymbols as NSArray
+        case .Chinese:
+            weekdays = ["周日","周一","周二","周三","周四","周五","周六"]
         }
 
         let firstWeekdayIndex = firstWeekday!.rawValue - 1

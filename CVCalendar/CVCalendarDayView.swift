@@ -296,6 +296,7 @@ extension CVCalendarDayView {
     }
 }
 
+
 // MARK: - Dot marker movement
 
 extension CVCalendarDayView {
@@ -416,7 +417,7 @@ extension CVCalendarDayView {
         var shape: CVShape!
         
         switch type {
-        case let .Single:
+        case .Single(.Dot):
             shape = .Circle
             if isCurrentDay {
                 dayLabel?.textColor = appearance.dayLabelPresentWeekdaySelectedTextColor!
@@ -429,8 +430,26 @@ extension CVCalendarDayView {
                 backgroundColor = appearance.dayLabelWeekdaySelectedBackgroundColor
                 backgroundAlpha = appearance.dayLabelWeekdaySelectedBackgroundAlpha
             }
-            
-        case let .Range:
+        case .Single(.Rect):
+            shape = .Rect
+            if isCurrentDay {
+                dayLabel?.textColor = appearance.dayLabelPresentWeekdayHighlightedTextColor!
+                dayLabel?.font = appearance.dayLabelPresentWeekdayHighlightedFont
+                backgroundColor = appearance.dayLabelPresentWeekdayHighlightedBackgroundColor
+                backgroundAlpha = appearance.dayLabelPresentWeekdayHighlightedBackgroundAlpha
+            } else {
+                dayLabel?.textColor = appearance.dayLabelWeekdayHighlightedTextColor
+                dayLabel?.font = appearance.dayLabelWeekdayHighlightedFont
+                backgroundColor = appearance.dayLabelWeekdayHighlightedBackgroundColor
+                backgroundAlpha = appearance.dayLabelWeekdayHighlightedBackgroundAlpha
+            }
+        case .Single(.Line):
+            shape = .BottomLine
+            dayLabel?.textColor = appearance.dayLabelWeekdayInTextColor
+            dayLabel?.font = appearance.dayLabelWeekdayHighlightedFont
+            backgroundColor = appearance.dayLabelWeekdayHighlightedBackgroundColor
+            backgroundAlpha = appearance.dayLabelWeekdayHighlightedBackgroundAlpha
+        case .Range:
             shape = .Rect
             if isCurrentDay {
                 dayLabel?.textColor = appearance.dayLabelPresentWeekdayHighlightedTextColor!
@@ -515,7 +534,7 @@ extension CVCalendarDayView {
         }
         
         if circleView != nil {
-            setSelectedWithType(.Single)
+            setSelectedWithType(calendarView.selectedStyle)
         }
     }
 }

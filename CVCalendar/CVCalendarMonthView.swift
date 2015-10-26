@@ -172,7 +172,7 @@ extension CVCalendarMonthView {
     
     public func didTouchInteractiveView(recognizer: UITapGestureRecognizer) {
         let location = recognizer.locationInView(self.interactiveView)
-        touchController.receiveTouchLocation(location, inMonthView: self, withSelectionType: .Single)
+        touchController.receiveTouchLocation(location, inMonthView: self, withSelectionType: calendarView.selectedStyle)
     }
 }
 

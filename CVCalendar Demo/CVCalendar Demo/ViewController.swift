@@ -102,7 +102,7 @@ extension ViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
     }
     
     func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool {
-        return true
+        return false
     }
     
     func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
@@ -145,7 +145,7 @@ extension ViewController: CVCalendarViewDelegate, CVCalendarMenuViewDelegate {
 
     
     func weekdaySymbolType() -> WeekdaySymbolType {
-        return .Short
+        return .Chinese
     }
 
 }

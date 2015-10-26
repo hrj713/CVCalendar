@@ -31,9 +31,9 @@ public final class CVCalendarViewAnimator {
 extension CVCalendarViewAnimator {
     public func animateSelectionOnDayView(dayView: DayView) {
         let selectionAnimation = delegate.selectionAnimation()
-        dayView.setSelectedWithType(.Single)
-        selectionAnimation(dayView) { [unowned dayView] _ in
-            // Something...
+        dayView.setSelectedWithType(dayView.calendarView.selectedStyle)
+        selectionAnimation(dayView) { [unowned dayView] completion in
+            dayView.calendarView.delegate?.didSelectDayView?(dayView, animationDidFinish: completion)
         }
     }
     
@@ -51,7 +51,7 @@ extension CVCalendarViewAnimator {
 
 extension CVCalendarViewAnimator: CVCalendarViewAnimatorDelegate {
     @objc public func selectionAnimation() -> ((DayView, ((Bool) -> ())) -> ()) {
-        return selectionWithBounceEffect()
+        return selectionWithNoEffect()
     }
     
     @objc public func deselectionAnimation() -> ((DayView, ((Bool) -> ())) -> ()) {
@@ -62,6 +62,13 @@ extension CVCalendarViewAnimator: CVCalendarViewAnimatorDelegate {
 // MARK: - Default animations
 
 private extension CVCalendarViewAnimator {
+    func selectionWithNoEffect() -> ((DayView, ((Bool) -> ())) -> ()) {
+        return {
+            dayView, completion in
+            dayView
+        }
+    }
+    
     func selectionWithBounceEffect() -> ((DayView, ((Bool) -> ())) -> ()) {
         return {
             dayView, completion in

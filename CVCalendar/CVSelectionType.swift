@@ -9,7 +9,7 @@
 import UIKit
 
 public enum CVSelectionType {
-    case Single
+    case Single(CVSelectionStyle)
     case Range(CVRange)
 }
 

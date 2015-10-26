@@ -61,6 +61,7 @@ public final class CVAuxiliaryView: UIView {
             case .LeftFlag: path = leftFlagPath()
             case .Circle: path = circlePath()
             case .Rect: path = rectPath()
+            case .BottomLine: path = bottomLinePath()
             }
         }
         
@@ -141,6 +142,13 @@ extension CVAuxiliaryView {
         
         let path = UIBezierPath(rect: CGRectMake(0 - offset, midY - radius, bounds.width + offset / 2, radius * 2))
         
+        return path
+    }
+    
+    func bottomLinePath() -> UIBezierPath {
+        let appearance = dayView.calendarView.appearance
+        let offset = appearance.spaceBetweenDayViews!
+        let path = UIBezierPath(rect: CGRectMake(0 - offset, bounds.height - 2, bounds.width + offset / 2, 2))
         return path
     }
 }

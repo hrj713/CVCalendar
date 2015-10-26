@@ -12,4 +12,5 @@ import Foundation
     case Normal
     case Short
     case VeryShort
+    case Chinese
 }
